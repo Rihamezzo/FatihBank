@@ -4,6 +4,7 @@ using FatihBank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatihBank.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221013100900_updateVouchersTable")]
+    partial class updateVouchersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -405,10 +407,13 @@ namespace FatihBank.Migrations
                     b.Property<int>("status")
                         .HasColumnType("int");
 
+                    b.Property<int?>("vacationTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("vacation_type")
                         .HasColumnType("int");
 
-                    b.Property<int?>("vacationsTypeId")
+                    b.Property<int>("vacationsTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -463,10 +468,10 @@ namespace FatihBank.Migrations
                     b.Property<int>("currency_2")
                         .HasColumnType("int");
 
-                    b.Property<int?>("exchangeAccountId")
+                    b.Property<int?>("exchange_account")
                         .HasColumnType("int");
 
-                    b.Property<int?>("exchange_account")
+                    b.Property<int?>("exchange_accountId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("last_update")
@@ -481,7 +486,7 @@ namespace FatihBank.Migrations
 
                     b.HasIndex("currency2Id");
 
-                    b.HasIndex("exchangeAccountId");
+                    b.HasIndex("exchange_accountId");
 
                     b.ToTable("MSS_AVG_MainAvg");
                 });
@@ -1418,13 +1423,13 @@ namespace FatihBank.Migrations
                     b.Property<long>("phone_number")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("sentToCustomerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("sent_by")
                         .HasColumnType("int");
 
                     b.Property<int?>("sent_by_userId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("sent_to_CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("sent_to_customer")
@@ -1443,9 +1448,9 @@ namespace FatihBank.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("sentToCustomerId");
-
                     b.HasIndex("sent_by_userId");
+
+                    b.HasIndex("sent_to_CustomerId");
 
                     b.ToTable("MSS_DEF_SMS");
                 });
@@ -2306,7 +2311,9 @@ namespace FatihBank.Migrations
 
                     b.HasOne("FatihBank.Models.MSS_ATT_VacationsTypes", "vacationsType")
                         .WithMany("vacations")
-                        .HasForeignKey("vacationsTypeId");
+                        .HasForeignKey("vacationsTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("employee");
 
@@ -2323,15 +2330,15 @@ namespace FatihBank.Migrations
                         .WithMany()
                         .HasForeignKey("currency2Id");
 
-                    b.HasOne("FatihBank.Models.MSS_DEF_Exchange_Accounts", "exchangeAccount")
+                    b.HasOne("FatihBank.Models.MSS_DEF_Exchange_Accounts", "exchange_Account")
                         .WithMany()
-                        .HasForeignKey("exchangeAccountId");
+                        .HasForeignKey("exchange_accountId");
 
                     b.Navigation("currency1");
 
                     b.Navigation("currency2");
 
-                    b.Navigation("exchangeAccount");
+                    b.Navigation("exchange_Account");
                 });
 
             modelBuilder.Entity("FatihBank.Models.MSS_CAS_Operations", b =>
@@ -2531,17 +2538,17 @@ namespace FatihBank.Migrations
 
             modelBuilder.Entity("FatihBank.Models.MSS_DEF_SMS", b =>
                 {
-                    b.HasOne("FatihBank.Models.MSS_DEF_Customers", "sentToCustomer")
-                        .WithMany()
-                        .HasForeignKey("sentToCustomerId");
-
                     b.HasOne("FatihBank.Models.MSS_DEF_Users", "sent_by_user")
                         .WithMany()
                         .HasForeignKey("sent_by_userId");
 
-                    b.Navigation("sentToCustomer");
+                    b.HasOne("FatihBank.Models.MSS_DEF_Customers", "sent_to_Customer")
+                        .WithMany()
+                        .HasForeignKey("sent_to_CustomerId");
 
                     b.Navigation("sent_by_user");
+
+                    b.Navigation("sent_to_Customer");
                 });
 
             modelBuilder.Entity("FatihBank.Models.MSS_DEF_Stores", b =>

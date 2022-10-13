@@ -6,7 +6,7 @@
         public int employee_id { get; set; }
         public int? employeeId { get; set; }
         public int vacation_type { get; set; }
-        public int? vacation_typeId { get; set; }
+        public int? vacationsTypeId { get; set; }
         public int no_of_days { get; set; }
         public DateTime request_date { get; set; }
 

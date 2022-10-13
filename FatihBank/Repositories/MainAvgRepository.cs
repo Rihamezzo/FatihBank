@@ -21,7 +21,7 @@ namespace FatihBank.Repositories
         {
             var pageCount = Math.Ceiling(dataContext.MSS_AVG_MainAvg.Count() / pageSize);
 
-            var list = await dataContext.MSS_AVG_MainAvg.Include(x => x.currency1).Include(x => x.currency2).Include(x => x.exchange_Account)
+            var list = await dataContext.MSS_AVG_MainAvg.Include(x => x.currency1).Include(x => x.currency2).Include(x => x.exchangeAccount)
                 .Skip((page - 1) * (int)pageSize)
                 .Take((int)pageSize)
                 .ToListAsync();

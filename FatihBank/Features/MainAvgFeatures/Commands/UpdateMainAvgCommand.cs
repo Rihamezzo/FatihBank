@@ -17,6 +17,6 @@ namespace FatihBank.Features.MainAvgFeatures.Commands
 
         public DateTime last_update { get; set; }
         public int? exchange_account { get; set; }
-        public int? exchange_accountId { get; set; }
+        public int? exchangeAccountId { get; set; }
     }
 }

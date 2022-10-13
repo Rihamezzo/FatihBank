@@ -17,7 +17,7 @@
 
         public DateTime last_update { get; set; }
         public int? exchange_account { get; set; }
-        public int? exchange_accountId { get; set; }
-        public virtual MSS_DEF_Exchange_Accounts exchange_Account { get; set; }
+        public int? exchangeAccountId { get; set; }
+        public virtual MSS_DEF_Exchange_Accounts exchangeAccount { get; set; }
     }
 }

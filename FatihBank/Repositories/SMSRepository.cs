@@ -20,7 +20,7 @@ namespace FatihBank.Repositories
         {
             var pageCount = Math.Ceiling(dataContext.MSS_DEF_SMS.Count() / pageSize);
 
-            var list = await dataContext.MSS_DEF_SMS.Include(x => x.sent_by_user).Include(x => x.sent_to_Customer)
+            var list = await dataContext.MSS_DEF_SMS.Include(x => x.sent_by_user).Include(x => x.sentToCustomer)
                 .Skip((page - 1) * (int)pageSize)
                 .Take((int)pageSize)
                 .ToListAsync();

@@ -20,7 +20,7 @@ namespace FatihBank.Repositories
         {
             var pageCount = Math.Ceiling(dataContext.MSS_INF_RegisterationFile.Count() / pageSize);
 
-            var list = await dataContext.MSS_INF_RegisterationFile.Include(x => x.user).Include(x => x.action_type).Include(x => x.account).Include(x => x.cashier).Include(x => x.currency).Include(x => x.exchange)
+            var list = await dataContext.MSS_INF_RegisterationFile.Include(x => x.user).Include(x => x.ActionType).Include(x => x.account).Include(x => x.cashier).Include(x => x.currency).Include(x => x.exchange)
                 .Skip((page - 1) * (int)pageSize)
                 .Take((int)pageSize)
                 .ToListAsync();

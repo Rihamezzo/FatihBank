@@ -11,7 +11,7 @@ namespace FatihBank.Features.RegisterationFileFeatures.Commands
 		public int operation_type { get; set; }
 		public int operation_id { get; set; }
 		public int action_type { get; set; }
-		public int? Action_typeId { get; set; }
+		public int? ActionTypeId { get; set; }
 		public int? account_id { get; set; }
 		public int? accountId { get; set; }
 		public double? amount { get; set; }

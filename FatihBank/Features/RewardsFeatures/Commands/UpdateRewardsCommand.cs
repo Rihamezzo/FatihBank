@@ -7,6 +7,7 @@ namespace FatihBank.Features.RewardsFeatures.Commands
     {
 		public int Id { get; set; }
 		public int employee_id { get; set; }
+		public int? employeeId { get; set; }
 		[Column(TypeName = "Date")]
 		public DateTime date { get; set; }
 		public double reward { get; set; }

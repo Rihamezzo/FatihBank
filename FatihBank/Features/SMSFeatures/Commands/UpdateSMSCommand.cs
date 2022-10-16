@@ -6,7 +6,7 @@ namespace FatihBank.Features.SMSFeatures.Commands
     {
         public int Id { get; set; }
         public int sent_by { get; set; }
-        public int? ssent_by_userId { get; set; }
+        public int? sent_by_userId { get; set; }
         public int sent_to_customer { get; set; }
         public int? sentToCustomerId { get; set; }
         public long phone_number { get; set; }

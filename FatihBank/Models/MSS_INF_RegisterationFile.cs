@@ -10,8 +10,8 @@
 		public int operation_type { get; set; }
 		public int operation_id { get; set; }
 		public int action_type { get; set; }
-		public int? Action_typeId { get; set; }
-		public virtual MSS_INF_Action_Types Action_Type { get; set; }
+		public int? ActionTypeId { get; set; }
+		public virtual MSS_INF_Action_Types ActionType { get; set; }
 		public int? account_id { get; set; }
 		public int? accountId { get; set; }
 		public virtual MSS_DEF_Accounts account { get; set; }
